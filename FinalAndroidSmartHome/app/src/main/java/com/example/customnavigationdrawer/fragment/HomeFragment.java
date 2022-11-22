@@ -37,8 +37,8 @@ public class HomeFragment extends Fragment {
         swicth_lighting_second = view.findViewById(R.id.switch2);
         txt_temp = view.findViewById(R.id.txt_temp);
         txt_hum = view.findViewById(R.id.txt_humi);
-        progress_temp = view.findViewById(R.id.progress_bar_temp);
-        progress_humi = view.findViewById(R.id.progress_bar_humi);
+//        progress_temp = view.findViewById(R.id.progress_bar_temp);
+//        progress_humi = view.findViewById(R.id.progress_bar_humi);
 
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -74,10 +74,9 @@ public class HomeFragment extends Fragment {
                 mValueTemperatureEsp8266 = dataSnapshot.getValue(Integer.class);
                 if(MainActivity.mTemperature != ""){
                     if(HomeFragment.mValueTemperatureEsp8266 >= Integer.parseInt(MainActivity.mTemperature) ){
-                        HistoryFragment.mRequestSeverFCM(mValueHumidityEsp826+"",mValueTemperatureEsp8266+"");
+                        SettingFragment.mRequestSeverFCM(mValueHumidityEsp826+"",mValueTemperatureEsp8266+"");
                     }
                 }
-                progress_temp.setProgress(mValueTemperatureEsp8266);
                 txt_temp.setText(mValueTemperatureEsp8266+"ºC");
             }
             @Override
@@ -93,10 +92,9 @@ public class HomeFragment extends Fragment {
                 if(MainActivity.mHumdity != ""){
                     if( HomeFragment.mValueHumidityEsp826 >= Integer.parseInt(MainActivity.mHumdity)){
                         Log.d("ABC",MainActivity.mHumdity+HomeFragment.mValueHumidityEsp826+MainActivity.TOKEN_DEVICE);
-                        HistoryFragment.mRequestSeverFCM(mValueHumidityEsp826+"",mValueTemperatureEsp8266+"");
+                        SettingFragment.mRequestSeverFCM(mValueHumidityEsp826+"",mValueTemperatureEsp8266+"");
                     }
                 }
-                progress_humi.setProgress(mValueHumidityEsp826);
                 txt_hum.setText(mValueHumidityEsp826+"%");
             }
             @Override
